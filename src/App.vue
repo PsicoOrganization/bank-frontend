@@ -8,13 +8,18 @@
       <button v-if="is_auth">Cerrar Sesion</button>
       <button v-if="!is_auth" v-on:click="loadLogIn">Iniciar Sesion</button>
       <button v-if="!is_auth" v-on:click="loadSignUp">Registrarse</button>
+      <button v-if="is_auth" v-on:click="loadHome"> Inicio </button>
+      <button v-if="is_auth" v-on:click="logOut"> Cerrar Sesión </button>
+      <button v-if="is_auth" v-on:click="loadAccount"> Cuenta </button>
     </nav>
   </div>
 
   <div class="main-component">
     <router-view
       v-on:completedLogIn="completedLogIn"
-      v-on:completedSignUp="completedSignUp">
+      v-on:completedSignUp="completedSignUp"
+      v-on:logOut="logOut"
+    >
       </router-view>
   </div>
 
@@ -31,12 +36,18 @@ export default {
   name:'App',
 
   data: function(){
-
+      return{
+        is_auth: false
+      }
   },
   methods: {
       verifyAuth: function(){
+        this.is_auth = localStorage.getItem("isAuth") || false;
+
         if (this.is_auth == false) {
-          this.$router.push({name: "logIn"})
+          this.$router.push({name: "logIn"});
+        }else{
+          this.$router.push({name: "home"});
         }
       },
 
@@ -48,12 +59,32 @@ export default {
         this.$router.push({name: "signUp"})
       },
 
-      completedLogIn: function(data) {
+      loadHome: function() {
+        this.$router.push({name: "home"});
+      },
 
+      loadAccount: function(){
+        this.$router.push({name: "account"});
+      },
+
+      logOut: function(){
+        localStorage.clear();
+        alert("Sesion Cerrada")
+        this.verifyAuth();
+      },
+
+      completedLogIn: function(data) {
+          localStorage.setItem("isAuth",true);
+          localStorage.setItem("username",data.username);
+          localStorage.setItem("token_access",data.token_access);
+          localStorage.setItem("token_refresh",data.token_refresh);
+          alert("Autenticacion Exitosa");
+          this.verifyAuth();
       },
 
       completedSignUp: function(data) {
-
+        alert("Registro Exitoso");
+        this.completedLogIn(data);
       },
 
   },
