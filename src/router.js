@@ -12,7 +12,7 @@ const routes = [
   },
   {
     path: '/user/logIn',
-    name: 'logiIn',
+    name: 'logIn',
     component: LogIn
   },
   {

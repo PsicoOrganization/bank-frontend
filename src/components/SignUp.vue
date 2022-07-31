@@ -43,7 +43,7 @@ export default {
     methods: {
         proccessSignUp: function(){
             axios.post(
-                "urlHerokuUser",
+                "https://bank-be-c4g3.herokuapp.com/user/",
                 this.user,
                 {headers: {}}
             ).then((result) => {
@@ -64,9 +64,7 @@ export default {
 <style>
     .signUp_user{
         margin: 0;
-        padding: 0%;
-        height: 100%;
-        width: 100%;
+        padding: 10%;
 
         display: flex;
         justify-content: center;
@@ -78,6 +76,7 @@ export default {
         border-radius: 10px;
         width: 25%;
         height: 60%;
+        padding:  10px 10px 10px 10px;
 
         display: flex;
         flex-direction: column;
@@ -91,6 +90,7 @@ export default {
 
     .signUp_user form{
         width: 70%;
+        height: 30%;
     }
 
     .signUp_user input{
