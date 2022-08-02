@@ -5,6 +5,8 @@
 </template>
 <script>
 export default {
+    name: "home",
+
     data: function(){
         return{
             username: localStorage.getItem('username') || "none"

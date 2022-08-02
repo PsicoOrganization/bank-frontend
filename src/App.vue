@@ -3,14 +3,12 @@
   <div class="header">
     <h1>Banco Mision Tic</h1>
     <nav>
-      <button v-if="is_auth">Inicio</button>
-      <button v-if="is_auth">Cuenta</button> 
-      <button v-if="is_auth">Cerrar Sesion</button>
       <button v-if="!is_auth" v-on:click="loadLogIn">Iniciar Sesion</button>
       <button v-if="!is_auth" v-on:click="loadSignUp">Registrarse</button>
       <button v-if="is_auth" v-on:click="loadHome"> Inicio </button>
-      <button v-if="is_auth" v-on:click="logOut"> Cerrar Sesión </button>
       <button v-if="is_auth" v-on:click="loadAccount"> Cuenta </button>
+      <button v-if="is_auth" v-on:click="logOut">Cerrar Sesión </button>
+      
     </nav>
   </div>
 
@@ -34,7 +32,7 @@ import { functionTypeAnnotation } from '@babel/types'
 
 export default {
   name:'App',
-
+  
   data: function(){
       return{
         is_auth: false

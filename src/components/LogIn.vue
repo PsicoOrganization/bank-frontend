@@ -15,7 +15,7 @@
 <script>
 import axios from 'axios';
 export default {
-    name: "LogIn",
+    name: "logIn",
 
     data: function(){  
         return{
@@ -40,7 +40,7 @@ export default {
               }  
               this.$emit('completedLogIn',dataLogin)
             }).catch((err) => {
-                if (error.response.status == "401") {
+                if (err.response.status == "401") {
                     alert("ERROR 401: Credenciales Incorrectas.");
                 }
             });

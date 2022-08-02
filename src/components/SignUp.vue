@@ -20,10 +20,10 @@
     </div>
 </template>
 <script>
-import axios from 'axios'
 
+import axios from 'axios';
 export default {
-    name: "signUp",
+    name: "SignUp",
 
     data: function(){
         return{
@@ -33,7 +33,7 @@ export default {
                 name: "",
                 email: "",
                 account: {
-                    lastChangeDate: (new Date().toJSON.toString()),
+                    lastChangeDate: (new Date()).toJSON().toString(),
                     balance: 0,
                     isActive: true
                 }
@@ -45,7 +45,8 @@ export default {
             axios.post(
                 "https://bank-be-c4g3.herokuapp.com/user/",
                 this.user,
-                {headers: {}}
+                {headers:{}}
+
             ).then((result) => {
                 let dataSignUp = {
                     username: this.user.username,
@@ -54,7 +55,7 @@ export default {
                 }
                 this.$emit('completedSignUp', dataSignUp)
             }).catch((err) => {
-                console.log(error)
+                console.log(err)
                 alert("ERROR: Fallo en el registro.")
             });
         }
