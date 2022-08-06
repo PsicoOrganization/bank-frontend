@@ -28,7 +28,6 @@
   </div>
 </template>
 <script>
-import { functionTypeAnnotation } from '@babel/types'
 
 export default {
   name:'App',
